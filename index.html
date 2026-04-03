@@ -25,16 +25,40 @@ html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
 
 /* ─── STICKY NAV ─── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,33,55,0.96);backdrop-filter:blur(8px);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
-.nav-logo img{height:38px;filter:brightness(0) invert(1);}
-.nav-cta{background:var(--gold);color:var(--navy);font-weight:600;font-size:14px;padding:10px 20px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:opacity .2s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,33,55,0.96);backdrop-filter:blur(8px);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.nav-logo img{height:80px;filter:brightness(0) invert(1);}
+.nav-center{display:flex;align-items:center;gap:20px;flex:1;justify-content:center;}
+.nav-contact{display:flex;align-items:center;gap:4px;color:rgba(255,255,255,.75);font-size:13px;text-decoration:none;transition:color .2s;}
+.nav-contact:hover{color:#fff;}
+.nav-contact span{font-size:15px;}
+.nav-divider{color:rgba(255,255,255,.15);}
+.nav-social{display:flex;align-items:center;gap:8px;}
+.nav-social a{width:30px;height:30px;border-radius:6px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:14px;transition:background .2s;}
+.nav-social a:hover{background:rgba(255,255,255,.18);}
+.nav-cta{background:var(--gold);color:var(--navy);font-weight:700;font-size:13px;padding:9px 18px;border-radius:6px;text-decoration:none;white-space:nowrap;transition:opacity .2s;}
 .nav-cta:hover{opacity:.88;}
-.nav-phone{color:#fff;font-size:14px;font-weight:500;text-decoration:none;margin-right:16px;opacity:.85;}
-@media(max-width:480px){.nav-phone{display:none;}}
+@media(max-width:900px){.nav-center{display:none;}}
+@media(max-width:600px){.nav-social{display:none;}}
+
+/* ─── MOBILE MENU ─── */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;}
+.nav-hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s;}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+.nav-hamburger.open span:nth-child(2){opacity:0;}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+@media(max-width:900px){.nav-hamburger{display:flex;}}
+.mobile-menu{display:none;position:fixed;top:100px;left:0;right:0;z-index:99;background:rgba(13,33,55,0.98);backdrop-filter:blur(12px);border-top:1px solid rgba(255,255,255,.08);padding:20px 24px;flex-direction:column;gap:14px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{color:rgba(255,255,255,.8);font-size:15px;text-decoration:none;display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.mobile-menu a:last-of-type{border-bottom:none;}
+.mobile-menu a:hover{color:#fff;}
+.mobile-menu-social{display:flex;gap:12px;padding-top:4px;}
+.mobile-menu-social a{border:none;padding:0;width:36px;height:36px;background:rgba(255,255,255,.08);border-radius:8px;justify-content:center;flex-shrink:0;}
+.mobile-menu-cta{background:var(--gold)!important;color:var(--navy)!important;font-weight:700;border-radius:8px;justify-content:center;margin-top:4px;border-bottom:none!important;}
 
 /* ─── HERO ─── */
-.hero{min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,#1A3D5C 55%,#1E5F8A 100%);display:flex;flex-direction:column;justify-content:center;padding:100px 24px 60px;position:relative;overflow:hidden;}
-.hero::before{content:'';position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=70') center/cover no-repeat;opacity:.15;}
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--navy) 0%,#1A3D5C 55%,#1E5F8A 100%);display:flex;flex-direction:column;justify-content:center;padding:110px 24px 60px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:url('images/portfolio/Screenshot%202026-04-03%20at%2008.49.58.png') center/cover no-repeat;opacity:.22;}
 .hero-inner{max-width:680px;margin:0 auto;position:relative;text-align:center;}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.4);color:var(--gold);font-size:13px;font-weight:600;padding:6px 14px;border-radius:20px;margin-bottom:24px;letter-spacing:.5px;text-transform:uppercase;}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,64px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:20px;}
@@ -55,8 +79,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,33,55,0.9
 .section-label{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sky);margin-bottom:12px;}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:16px;}
 .section-sub{font-size:17px;color:var(--muted);line-height:1.7;margin-bottom:48px;max-width:600px;}
-.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
-.pain-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;position:relative;overflow:hidden;}
+.pain-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;}
+@media(max-width:700px){.pain-grid{grid-template-columns:1fr;}}
+.pain-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;position:relative;overflow:hidden;grid-column:span 6;}
+@media(max-width:700px){.pain-card{grid-column:span 1;}}
 .pain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--blue);}
 .pain-icon{font-size:28px;margin-bottom:14px;}
 .pain-card h3{font-size:17px;font-weight:600;color:var(--navy);margin-bottom:8px;}
@@ -66,9 +92,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,33,55,0.9
 /* ─── SERVICES ─── */
 .services{padding:72px 24px;background:var(--white);}
 .services-inner{max-width:1100px;margin:0 auto;}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;margin-top:40px;}
-.svc-card{border:1.5px solid var(--border);border-radius:14px;padding:28px 22px;text-align:center;transition:border-color .2s,transform .2s;cursor:default;}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px;}
+@media(max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:480px){.services-grid{grid-template-columns:1fr;}}
+.svc-card{border:1.5px solid var(--border);border-radius:14px;padding:28px 22px;text-align:center;transition:border-color .2s,transform .2s;cursor:default;overflow:hidden;}
 .svc-card:hover{border-color:var(--sky);transform:translateY(-4px);}
+.svc-card.has-img{padding:0;text-align:left;}
+.svc-card.has-img .svc-card-body{padding:18px 20px 20px;}
+.svc-card-img{width:100%;height:160px;object-fit:cover;display:block;}
+.svc-card.has-img .svc-icon{margin:0 0 12px 0;border-radius:8px;}
 .svc-icon{width:56px;height:56px;background:var(--ice);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:26px;}
 .svc-card h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:8px;}
 .svc-card p{font-size:14px;color:var(--muted);line-height:1.6;}
@@ -174,6 +206,15 @@ footer{background:#070F18;padding:28px 24px;text-align:center;}
 footer p{font-size:13px;color:rgba(255,255,255,.3);}
 footer a{color:rgba(255,255,255,.45);text-decoration:none;}
 
+/* ─── FLOATING BUTTONS ─── */
+.float-btn{position:fixed;bottom:24px;z-index:200;display:flex;align-items:center;gap:10px;padding:13px 18px;border-radius:50px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .2s,box-shadow .2s;}
+.float-btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(0,0,0,.3);}
+.float-btn svg{flex-shrink:0;}
+.float-whatsapp{right:24px;background:#25D366;color:#fff;}
+.float-sms{left:24px;background:#1A5C96;color:#fff;}
+.float-btn-label{display:none;}
+.float-btn{padding:14px;border-radius:50%;}
+
 /* ─── SCROLL ANIMATIONS ─── */
 .fade-up{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
 .fade-up.visible{opacity:1;transform:translateY(0);}
@@ -182,6 +223,32 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
 .area-strip{background:var(--ice);padding:20px 24px;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .area-strip p{font-size:14px;color:var(--muted);}
 .area-strip strong{color:var(--navy);}
+
+/* ─── PORTFOLIO GALLERY ─── */
+.portfolio{padding:72px 24px;background:var(--off);}
+.portfolio-inner{max-width:1100px;margin:0 auto;}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px;}
+@media(max-width:700px){.portfolio-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:440px){.portfolio-grid{grid-template-columns:1fr;}}
+.portfolio-item{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3;}
+.portfolio-item.wide{grid-column:span 2;}
+@media(max-width:700px){.portfolio-item.wide{grid-column:span 1;}}
+.portfolio-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease;}
+.portfolio-item:hover img{transform:scale(1.06);}
+.portfolio-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,33,55,.65) 0%,transparent 55%);opacity:0;transition:opacity .3s;}
+.portfolio-item:hover .portfolio-item-overlay{opacity:1;}
+.portfolio-item-label{position:absolute;bottom:12px;left:14px;right:14px;color:#fff;font-size:13px;font-weight:600;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s;}
+.portfolio-item:hover .portfolio-item-label{opacity:1;transform:translateY(0);}
+
+/* ─── VAN / BRAND STRIP ─── */
+.van-strip{background:var(--navy);padding:56px 24px;}
+.van-strip-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;}
+@media(max-width:700px){.van-strip-inner{grid-template-columns:1fr;}}
+.van-strip-img{border-radius:16px;overflow:hidden;}
+.van-strip-img img{width:100%;display:block;border-radius:16px;}
+.van-strip-content h2{font-family:'Playfair Display',serif;font-size:clamp(24px,3.5vw,36px);color:#fff;font-weight:800;margin-bottom:14px;}
+.van-strip-content p{font-size:16px;color:rgba(255,255,255,.65);line-height:1.75;margin-bottom:24px;}
+.van-strip-content .btn-primary{display:inline-block;}
 </style>
 </head>
 <body>
@@ -189,13 +256,55 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">
-    <img src="https://lirp.cdn-website.com/235123ee/dms3rep/multi/opt/Logo_file_color-removebg-preview-1920w.png" alt="Perfect Window and Eaves Cleaning">
+    <img src="images/Logo_file_color-removebg-preview-173w.webp" alt="Perfect Window and Eaves Cleaning">
   </a>
-  <div style="display:flex;align-items:center;">
-    <a class="nav-phone" href="tel:6476693434">📞 (647) 669-3434</a>
+  <div class="nav-center">
+    <a class="nav-contact" href="tel:6476693434"><span>📞</span> (647) 669-3434</a>
+    <span class="nav-divider">|</span>
+    <a class="nav-contact" href="mailto:info@perfectwindowcleaning.ca"><span>✉️</span> info@perfectwindowcleaning.ca</a>
+    <span class="nav-divider">|</span>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/perfectwindowsGTA" target="_blank" title="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+      <a href="#" title="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+      </a>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;">
     <a class="nav-cta" href="#contact">Get a Free Quote</a>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="tel:6476693434">📞 (647) 669-3434</a>
+  <a href="mailto:info@perfectwindowcleaning.ca">✉️ info@perfectwindowcleaning.ca</a>
+  <div style="display:flex;gap:16px;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.06);">
+    <div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;">Mon – Fri</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.8);">7:00 am – 7:00 pm</div>
+    </div>
+    <div style="width:1px;background:rgba(255,255,255,.1);"></div>
+    <div>
+      <div style="font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;">Sat – Sun</div>
+      <div style="font-size:14px;color:rgba(255,255,255,.8);">9:00 am – 6:00 pm</div>
+    </div>
+  </div>
+  <div class="mobile-menu-social">
+    <a href="https://www.facebook.com/perfectwindowsGTA" target="_blank" title="Facebook">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+    </a>
+    <a href="#" title="Instagram">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+    </a>
+  </div>
+  <a class="mobile-menu-cta" href="#contact" onclick="toggleMenu()">📩 Get a Free Quote</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="hero">
@@ -261,45 +370,69 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
     <p class="section-label fade-up">What We Do</p>
     <h2 class="section-title fade-up">Complete Exterior Care — All Under One Roof</h2>
     <div class="services-grid">
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🪟</div>
-        <h3>Window Cleaning</h3>
-        <p>Interior & exterior, all sizes. Sills, frames, and ledges included.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.45.png" alt="Window Cleaning">
+        <div class="svc-card-body">
+          <div class="svc-icon">🪟</div>
+          <h3>Window Cleaning</h3>
+          <p>Interior & exterior, all sizes. Sills, frames, and ledges included.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🌿</div>
-        <h3>Eavestrough Cleaning</h3>
-        <p>Full debris removal, downspout flushing, and flow testing.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.11.png" alt="Eavestrough Cleaning">
+        <div class="svc-card-body">
+          <div class="svc-icon">🌿</div>
+          <h3>Eavestrough Cleaning</h3>
+          <p>Full debris removal, downspout flushing, and flow testing.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🔧</div>
-        <h3>Eavestrough Repair</h3>
-        <p>Leaks, sagging, and full replacement handled professionally.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.23.png" alt="Eavestrough Repair">
+        <div class="svc-card-body">
+          <div class="svc-icon">🔧</div>
+          <h3>Eavestrough Repair</h3>
+          <p>Leaks, sagging, and full replacement handled professionally.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🛡️</div>
-        <h3>Leaf Guard Installation</h3>
-        <p>Prevent future clogs with durable leaf guard systems.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.49.45.png" alt="Leaf Guard Installation">
+        <div class="svc-card-body">
+          <div class="svc-icon">🛡️</div>
+          <h3>Leaf Guard Installation</h3>
+          <p>Prevent future clogs with durable leaf guard systems.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">💦</div>
-        <h3>Power Washing</h3>
-        <p>Driveways, decks, fences, awnings, and building exteriors.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.49.17.png" alt="Power Washing">
+        <div class="svc-card-body">
+          <div class="svc-icon">💦</div>
+          <h3>Power Washing</h3>
+          <p>Driveways, decks, fences, awnings, and building exteriors.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🏠</div>
-        <h3>Aluminum Siding</h3>
-        <p>Soffit, fascia, and exterior siding deep-cleaned.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.39.png" alt="Aluminum Siding">
+        <div class="svc-card-body">
+          <div class="svc-icon">🏠</div>
+          <h3>Aluminum Siding</h3>
+          <p>Soffit, fascia, and exterior siding deep-cleaned.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🎨</div>
-        <h3>Painting</h3>
-        <p>Residential & commercial interior and exterior painting.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.50.51.png" alt="Painting">
+        <div class="svc-card-body">
+          <div class="svc-icon">🎨</div>
+          <h3>Painting</h3>
+          <p>Residential & commercial interior and exterior painting.</p>
+        </div>
       </div>
-      <div class="svc-card fade-up">
-        <div class="svc-icon">🔨</div>
-        <h3>Odd Jobs</h3>
-        <p>Furniture moving, minor repairs, and more. One call does it all.</p>
+      <div class="svc-card has-img fade-up">
+        <img class="svc-card-img" src="images/portfolio/Screenshot%202026-04-03%20at%2008.48.38.png" alt="Odd Jobs">
+        <div class="svc-card-body">
+          <div class="svc-icon">🔨</div>
+          <h3>Odd Jobs</h3>
+          <p>Furniture moving, minor repairs, and more. One call does it all.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -440,6 +573,56 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
   </div>
 </section>
 
+<!-- PORTFOLIO GALLERY -->
+<!-- <section class="portfolio">
+  <div class="portfolio-inner">
+    <p class="section-label fade-up">Our Work</p>
+    <h2 class="section-title fade-up">Real Jobs. Real Results.</h2>
+    <p class="section-sub fade-up">From power washing luxury properties to painting and eavestrough repairs — here's a look at what we do every day.</p>
+    <div class="portfolio-grid">
+      <div class="portfolio-item wide fade-up">
+        <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.49.58.png" alt="Power washing luxury home">
+        <div class="portfolio-item-overlay"></div>
+        <div class="portfolio-item-label">Power Washing — Luxury Property</div>
+      </div>
+      <div class="portfolio-item fade-up">
+        <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.50.51.png" alt="Painting — red door result">
+        <div class="portfolio-item-overlay"></div>
+        <div class="portfolio-item-label">Painting — Door &amp; Trim</div>
+      </div>
+      <div class="portfolio-item fade-up">
+        <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.49.31.png" alt="Power washing patio furniture">
+        <div class="portfolio-item-overlay"></div>
+        <div class="portfolio-item-label">Power Washing — Patio</div>
+      </div>
+      <div class="portfolio-item fade-up">
+        <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.33.png" alt="Exterior painting on ladder">
+        <div class="portfolio-item-overlay"></div>
+        <div class="portfolio-item-label">Exterior Painting</div>
+      </div>
+      <div class="portfolio-item wide fade-up">
+        <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.51.45.png" alt="Completed exterior job">
+        <div class="portfolio-item-overlay"></div>
+        <div class="portfolio-item-label">Completed Exterior Care — Toronto</div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<!-- VAN / BRAND -->
+<section class="van-strip">
+  <div class="van-strip-inner">
+    <div class="van-strip-img fade-up">
+      <img src="images/portfolio/Screenshot%202026-04-03%20at%2008.48.13.png" alt="Perfect Window branded van">
+    </div>
+    <div class="van-strip-content fade-up">
+      <h2>One Team. Every Service. One Call.</h2>
+      <p>Our fully-equipped, branded vans are a common sight across Toronto, Oakville, and the GTA. When you see us pull up, you know the job is going to get done right — the first time.</p>
+      <a href="#contact" class="btn-primary">Book Your Service Today</a>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section class="reviews">
   <div class="reviews-inner">
@@ -488,41 +671,7 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
   <div class="contact-inner">
     <p class="section-label fade-up" style="color:var(--sky);">Get in Touch</p>
     <h2 class="section-title fade-up" style="color:#fff;">Request a Free Quote</h2>
-    <div class="contact-grid">
-      <div class="contact-info fade-up">
-        <h3>We'd Love to Help</h3>
-        <div class="contact-row">
-          <div class="contact-icon">📞</div>
-          <div class="contact-detail">
-            <strong>Phone</strong>
-            <a href="tel:6476693434">(647) 669-3434</a>
-          </div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-detail">
-            <strong>Email</strong>
-            <a href="mailto:info@perfectwindowcleaning.ca">info@perfectwindowcleaning.ca</a>
-          </div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon">🕐</div>
-          <div class="contact-detail">
-            <strong>Business Hours</strong>
-            <div class="hours-grid" style="margin-top:10px;">
-              <div class="hours-item"><strong>Mon – Fri</strong><span>7:00 am – 7:00 pm</span></div>
-              <div class="hours-item"><strong>Sat – Sun</strong><span>9:00 am – 6:00 pm</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="contact-row">
-          <div class="contact-icon">📍</div>
-          <div class="contact-detail">
-            <strong>Service Area</strong>
-            <span>Toronto, Oakville, Mississauga, Brampton & all of the GTA</span>
-          </div>
-        </div>
-      </div>
+    <div style="max-width:600px;margin:48px auto 0;">
       <div class="form-card fade-up">
         <h3>Get Your Free Quote</h3>
         <p>We'll get back to you within 2 hours during business hours.</p>
@@ -566,12 +715,41 @@ footer a{color:rgba(255,255,255,.45);text-decoration:none;}
   </div>
 </section>
 
+
+<!-- FLOATING BUTTONS -->
+<a class="float-btn float-whatsapp" href="https://wa.me/16476693434" target="_blank">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.054 23.419a.75.75 0 0 0 .916.928l5.698-1.493A11.954 11.954 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.891 0-3.667-.523-5.188-1.432l-.372-.22-3.384.887.902-3.293-.241-.381A9.96 9.96 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span class="float-btn-label">WhatsApp</span>
+</a>
+<a class="float-btn float-sms" href="sms:6476693434">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  <span class="float-btn-label">Send SMS</span>
+</a>
+
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Perfect Window and Eaves Cleaning Inc. · <a href="tel:6476693434">(647) 669-3434</a> · <a href="mailto:info@perfectwindowcleaning.ca">info@perfectwindowcleaning.ca</a> · Serving the Greater Toronto Area</p>
+  <div style="max-width:640px;margin:0 auto;">    
+    <p style="font-size:12px;color:rgba(255,255,255,.2);margin-top:20px;text-align:center;">© 2026 Perfect Window and Eaves Cleaning Inc. · Serving the Greater Toronto Area</p>
+  </div>
 </footer>
 
 <script>
+// Mobile menu
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  menu.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const btn = document.getElementById('hamburger');
+  if (!menu.contains(e.target) && !btn.contains(e.target)) {
+    menu.classList.remove('open');
+    btn.classList.remove('open');
+  }
+});
+
 // Scroll animations
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
@@ -595,6 +773,14 @@ function handleSubmit(e) {
   e.preventDefault();
   const btn = e.target.querySelector('.form-submit');
   btn.textContent = '✅ Request Sent! We\'ll be in touch shortly.';
+  btn.style.background = '#2E7D32';
+  btn.style.color = '#fff';
+  btn.disabled = true;
+}
+function handleFooterSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('footer-btn');
+  btn.textContent = '✅ Sent! We\'ll be in touch shortly.';
   btn.style.background = '#2E7D32';
   btn.style.color = '#fff';
   btn.disabled = true;
