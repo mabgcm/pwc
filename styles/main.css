@@ -1590,3 +1590,74 @@ footer a {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ─── SERVICE AREAS ─── */
+.areas {
+  background: #fff;
+  padding: 80px 24px;
+  border-top: 1px solid var(--border);
+}
+
+.areas-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.areas-inner .section-title,
+.areas-inner .section-sub {
+  text-align: center;
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.area-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 28px 16px 22px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  text-align: center;
+  transition: box-shadow .2s, transform .2s;
+}
+
+.area-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,.1);
+  transform: translateY(-3px);
+}
+
+.area-pin {
+  width: 28px;
+  height: 28px;
+  color: var(--sky);
+  flex-shrink: 0;
+}
+
+.area-card span {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .areas-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .areas-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
